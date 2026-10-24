@@ -121,7 +121,8 @@ describe("planEnvironmentBundle", () => {
       "RUN apt-get update && apt-get install -y --no-install-recommends python3 && rm -rf /var/lib/apt/lists/*",
     );
     expect(lines).toContain(
-      `RUN npm install -g --ignore-scripts --no-fund --no-audit rea-agents-layouter787@${PACKAGE_METADATA.version}`,
+      "RUN npm install -g --ignore-scripts --no-fund --no-audit " +
+        `rea-agents-layouter787@${PACKAGE_METADATA.version}`,
     );
     expect(lines).toContain(
       "COPY --chown=node:node manifest.json evidence.json /env/",
@@ -144,7 +145,9 @@ describe("planEnvironmentBundle", () => {
     expect(dockerfile).toContain(
       "RUN npm install -g --ignore-scripts --no-fund --no-audit /tmp/rea-agents.tgz && rm /tmp/rea-agents.tgz\n",
     );
-    expect(dockerfile).not.toContain(`rea-agents-layouter787@${PACKAGE_METADATA.version}`);
+    expect(dockerfile).not.toContain(
+      `rea-agents-layouter787@${PACKAGE_METADATA.version}`,
+    );
     expect(bundleDockerfile(registryPackageSource())).not.toBe(dockerfile);
   });
 
@@ -213,7 +216,9 @@ describe("planEnvironmentBundle", () => {
     expect(readme).toContain(
       `- State: \`${served.state?.evidenceId ?? ""}\`, derived from the capture`,
     );
-    expect(readme).toContain(`rea-agents-layouter787@${PACKAGE_METADATA.version}`);
+    expect(readme).toContain(
+      `rea-agents-layouter787@${PACKAGE_METADATA.version}`,
+    );
     expect(readme).toContain("```sh\nagent-env run .\n```");
     expect(readme).not.toContain("agent-env run grafana-example");
     expect(readme).toContain("## What the environment serves");
