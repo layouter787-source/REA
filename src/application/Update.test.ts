@@ -134,7 +134,8 @@ describe("REA update", () => {
     host.installationResult = {
       manager: "bun",
       globalDirectory: "/home/user/.bun/install/global",
-      packageRoot: "/home/user/.bun/install/global/node_modules/rea-agents-layouter787",
+      packageRoot:
+      "/home/user/.bun/install/global/node_modules/rea-agents-layouter787",
     };
     expect(await runUpdate("3.2.1", host, "structured")).toMatchObject({
       status: "updated",
@@ -325,7 +326,9 @@ describe("update failures and version boundaries", () => {
 
   it("reports actual npm failures and skips verification", async () => {
     const host = new FakeUpdateHost();
-    host.installResult = err("EACCES /fixture/lib/node_modules/rea-agents-layouter787");
+    host.installResult = err(
+      "EACCES /fixture/lib/node_modules/rea-agents-layouter787",
+    );
     const result = await runUpdate("3.2.1", host);
     expect(result).toMatchObject({ status: "failed", reason: "install" });
     expect(result).toHaveProperty(
@@ -353,7 +356,8 @@ describe("npm installation ownership", () => {
   });
 
   it("retains the curl installer's custom Unix prefix", async () => {
-    const packageRoot = "/home/user/.local/lib/node_modules/rea-agents-layouter787";
+    const packageRoot =
+      "/home/user/.local/lib/node_modules/rea-agents-layouter787";
     await expect(
       detectNpmInstallation(packageRoot, host("/usr/local/lib/node_modules")),
     ).resolves.toEqual({
