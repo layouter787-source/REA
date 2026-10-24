@@ -135,7 +135,7 @@ describe("REA update", () => {
       manager: "bun",
       globalDirectory: "/home/user/.bun/install/global",
       packageRoot:
-      "/home/user/.bun/install/global/node_modules/rea-agents-layouter787",
+        "/home/user/.bun/install/global/node_modules/rea-agents-layouter787",
     };
     expect(await runUpdate("3.2.1", host, "structured")).toMatchObject({
       status: "updated",
