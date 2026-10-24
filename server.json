@@ -1,11 +1,11 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.morluto/rea",
-  "title": "REA",
+  "name": "io.github.layouter787-source/rea",
+  "title": "REA Community Fork",
   "description": "Reverse engineer anything from your terminal or agent with one CLI and MCP server.",
-  "websiteUrl": "https://github.com/morluto/rea",
+  "websiteUrl": "https://github.com/layouter787-source/REA",
   "repository": {
-    "url": "https://github.com/morluto/rea",
+    "url": "https://github.com/layouter787-source/REA",
     "source": "github"
   },
   "version": "0.4.0",
@@ -13,7 +13,7 @@
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
-      "identifier": "rea-agents",
+      "identifier": "rea-agents-layouter787",
       "version": "0.4.0",
       "runtimeHint": "npx",
       "transport": {
