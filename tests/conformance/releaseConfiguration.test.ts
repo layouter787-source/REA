@@ -60,7 +60,9 @@ describe("release configuration", () => {
           content,
         )?.[0];
 
-      expect(versionBlock).toContain(`rea-agents-layouter787@${packageJson.version}`);
+      expect(versionBlock).toContain(
+        `rea-agents-layouter787@${packageJson.version}`,
+      );
     },
   );
 
