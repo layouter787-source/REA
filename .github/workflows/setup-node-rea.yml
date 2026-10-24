@@ -1,0 +1,41 @@
+name: Setup REA Node.js
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/setup-node-rea.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  setup-node:
+    name: Install required Node.js and verify REA
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js required by REA
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.23.4"
+          cache: npm
+
+      - name: Install required npm version
+        run: npm install --global npm@11.16.0
+
+      - name: Verify toolchain versions
+        run: |
+          node --version
+          npm --version
+          node -e "const v = process.versions.node; if (v !== '22.23.4') { console.error('Expected Node.js 22.23.4, got ' + v); process.exit(1); }"
+
+      - name: Install project dependencies
+        run: npm ci
