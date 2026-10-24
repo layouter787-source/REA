@@ -132,7 +132,7 @@ const registerBundlePublicationCases = () => {
       state: { served: true, evidence_id: expect.stringMatching(/^ev_/u) },
       package_source: {
         kind: "registry",
-        specifier: `rea-agents@${PACKAGE_METADATA.version}`,
+        specifier: `rea-agents-layouter787@${PACKAGE_METADATA.version}`,
       },
     });
     const written = exported.value.files.map((file) => file.path).sort();
