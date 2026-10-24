@@ -30,7 +30,10 @@ describe("environment bundle package pin", () => {
 
   it("pins the registry install to the package.json version", async () => {
     const manifest = z
-      .object({ name: z.literal("rea-agents-layouter787"), version: z.string().min(1) })
+      .object({
+        name: z.literal("rea-agents-layouter787"),
+        version: z.string().min(1),
+      })
       .parse(
         JSON.parse(
           await readFile(
