@@ -14,7 +14,7 @@ Setup previews configuration changes and asks for approval before applying them.
 ## Start setup
 
 ```bash
-npx rea-agents setup
+npx rea-agents-layouter787-layouter787 setup
 ```
 
 Choose the agents to configure, review the proposed paths and changes, and
@@ -28,7 +28,7 @@ During package resolution, npm may print a deprecation warning for `prebuild-ins
 from transitive native dependencies (such as Frida). This warning originates from
 the upstream dependency tree and does not affect REA or indicate setup failure.
 
-For the latest published release, use `npx rea-agents@latest setup`.
+For the latest published release, use `npx rea-agents-layouter787-layouter787@latest setup`.
 [Package-runner and global-installation options](#package-runners-and-global-installation)
 cover explicit versions, Bun, runtime requirements, and the curl wrapper.
 
@@ -240,7 +240,7 @@ For REA setup, an empty `CLAUDE_CONFIG_DIR` is treated as unset: registration
 goes to `~/.claude.json` and the skill goes to `~/.claude/skills`.
 
 ```bash
-CLAUDE_CONFIG_DIR=~/.claude-rea npx rea-agents setup --client claude_code
+CLAUDE_CONFIG_DIR=~/.claude-rea npx rea-agents-layouter787-layouter787 setup --client claude_code
 CLAUDE_CONFIG_DIR=~/.claude-rea claude
 ```
 
@@ -256,8 +256,8 @@ environment and can otherwise inspect or recreate default-profile state:
 
 ```bash
 CLAUDE_CONFIG_DIR=~/.claude-rea claude mcp list
-CLAUDE_CONFIG_DIR=~/.claude-rea npx rea-agents doctor --client claude_code --skill --json
-CLAUDE_CONFIG_DIR=~/.claude-rea npx -y rea-agents@latest setup --client claude_code --dry-run
+CLAUDE_CONFIG_DIR=~/.claude-rea npx rea-agents-layouter787 doctor --client claude_code --skill --json
+CLAUDE_CONFIG_DIR=~/.claude-rea npx -y rea-agents-layouter787-layouter787@latest setup --client claude_code --dry-run
 ```
 
 After reviewing an update plan, rerun that same prefixed setup command without
@@ -280,10 +280,10 @@ restore the previous selection afterward:
 $previousClaudeConfigDir = $env:CLAUDE_CONFIG_DIR
 try {
   $env:CLAUDE_CONFIG_DIR = Join-Path $HOME ".claude-rea"
-  npx rea-agents setup --client claude_code
+  npx rea-agents-layouter787-layouter787 setup --client claude_code
   claude mcp list
-  npx rea-agents doctor --client claude_code --skill --json
-  npx -y rea-agents@latest setup --client claude_code --dry-run
+  npx rea-agents-layouter787 doctor --client claude_code --skill --json
+  npx -y rea-agents-layouter787-layouter787@latest setup --client claude_code --dry-run
   # After reviewing the plan, repeat setup without --dry-run and approve it.
   claude
   # Profile removal, when intended, also belongs inside this selected scope:
@@ -319,14 +319,14 @@ Register with the variable unset:
 <!-- x-release-please-start-version -->
 
 ```bash
-claude mcp add --scope local rea -- npx -y rea-agents-layouter787@0.4.0 mcp
+claude mcp add --scope local rea -- npx -y rea-agents-layouter787-layouter787@0.4.0 mcp
 ```
 
 On native Windows, use the same project directory and wrap the package-runner
 shim so the stdio client can launch it:
 
 ```powershell
-claude mcp add --scope local rea -- cmd.exe /d /c npx -y rea-agents-layouter787@0.4.0 mcp
+claude mcp add --scope local rea -- cmd.exe /d /c npx -y rea-agents-layouter787-layouter787@0.4.0 mcp
 ```
 
 <!-- x-release-please-end -->
@@ -414,7 +414,7 @@ provider-specific recovery advice.
 
 ## Diagnose, update, and remove
 
-`rea doctor --json` is strictly read-only. `rea update` updates only the npm or Bun global installation that owns the running CLI. Source checkouts and package-runner copies must be updated through the mechanism that owns them; a fresh package-runner invocation can use `npx rea-agents@latest` or `bunx rea-agents@latest`. `rea uninstall` removes only REA-owned agent registrations and skill files; `--purge-data` additionally removes REA cache and state paths.
+`rea doctor --json` is strictly read-only. `rea update` updates only the npm or Bun global installation that owns the running CLI. Source checkouts and package-runner copies must be updated through the mechanism that owns them; a fresh package-runner invocation can use `npx rea-agents-layouter787-layouter787@latest` or `bunx rea-agents-layouter787-layouter787@latest`. `rea uninstall` removes only REA-owned agent registrations and skill files; `--purge-data` additionally removes REA cache and state paths.
 
 ```bash
 rea update
@@ -470,7 +470,7 @@ entry:
    ```
 
    Replace `REA_CACHE_KEY` with the key from the failing `_npx` path. Check that
-   `info` reports that location and the expected `rea-agents` version. Its
+   `info` reports that location and the expected `rea-agents-layouter787` version. Its
    `valid` label describes the cache entry metadata, not the presence of every
    installed file. These subcommands require npm with `cache npx` support.
 
@@ -479,7 +479,7 @@ entry:
 
    ```powershell
    npm.cmd cache npx rm REA_CACHE_KEY
-   npx.cmd --yes rea-agents-layouter787@0.4.0 doctor --json
+   npx.cmd --yes rea-agents-layouter787-layouter787@0.4.0 doctor --json
    ```
 
    Keep the key argument: this recovery does not require clearing all npm caches
@@ -549,7 +549,7 @@ release containing changes after this checkpoint is required for newer
 functionality. Package startup alone does not verify a provider's real
 platform workflow.
 
-To check the published version, run `npm view rea-agents dist-tags.latest`.
+To check the published version, run `npm view rea-agents-layouter787 dist-tags.latest`.
 Use the connected server's actual tool list and advertised input schemas for
 feature selection. The same package version string in a development checkout
 does not establish that its bytes match the npm tarball. Update a registration
@@ -577,7 +577,7 @@ and the release boundary above. Static JavaScript CLI inspection can proceed
 while MCP is unavailable:
 
 ```bash
-npx -y rea-agents@latest analyze-javascript-application /absolute/path/to/app --json
+npx -y rea-agents-layouter787-layouter787@latest analyze-javascript-application /absolute/path/to/app --json
 ```
 
 It returns the complete Evidence record directly and requires no native engine.
@@ -618,7 +618,7 @@ hosted connector; see [its configuration](client-configuration.md#other-client-s
 | DeepSeek Harness   | `dsh`            |
 
 `droid`, `dsh`, `kimi`, `qoder`, `trae`, `workbuddy`, and `zcode` require
-`rea-agents@6.5.0` or later. The 6.4.0 registry check above does not cover them.
+`rea-agents-layouter787@6.5.0` or later. The 6.4.0 registry check above does not cover them.
 
 See [client configuration and troubleshooting](client-configuration.md) for
 configuration paths, profiles, trust policies, and schema-limit workarounds.
@@ -1438,7 +1438,7 @@ Ghidra/JDK installation; neither is inferred from startup alone.
 ## MCP Registry
 
 REA is published in the official MCP Registry as `io.github.morluto/rea`. Registry
-clients can discover the server and install the existing public `rea-agents` npm
+clients can discover the server and install the existing public `rea-agents-layouter787` npm
 package; the Registry entry does not introduce a second distribution artifact.
 
 For a client that supports Registry discovery, search for `io.github.morluto/rea`
@@ -1454,7 +1454,7 @@ For a client that requires manual configuration, use:
   "mcpServers": {
     "rea": {
       "command": "npx",
-      "args": ["-y", "rea-agents-layouter787@0.4.0", "mcp"]
+      "args": ["-y", "rea-agents-layouter787-layouter787@0.4.0", "mcp"]
     }
   }
 }
@@ -1463,7 +1463,7 @@ For a client that requires manual configuration, use:
 <!-- x-release-please-end -->
 
 Persistent registrations should use one exact package version. `rea setup`
-writes the same package-runner shape, or `bunx rea-agents@<version> mcp` when
+writes the same package-runner shape, or `bunx rea-agents-layouter787@<version> mcp` when
 setup runs through `bunx`, and pins it to the exact version that performed
 setup. Run current setup to refresh an older registration, then restart the
 client.
@@ -1481,7 +1481,7 @@ A package-runner invocation can use a REA version installed in the current proje
 request the latest release explicitly, use:
 
 ```bash
-npx rea-agents@latest setup
+npx rea-agents-layouter787-layouter787@latest setup
 ```
 
 REA runs the version npm selects. To update older agent registrations, run the
@@ -1492,17 +1492,17 @@ setup changes.
 For an intentional rollback, make the package request explicit:
 
 ```bash
-npm exec --yes --package=rea-agents@2.4.0 -- rea setup
+npm exec --yes --package=rea-agents-layouter787@2.4.0 -- rea setup
 ```
 
 Setup continues to pin persistent MCP registrations to the exact version that
 performed setup. Running current setup later migrates unversioned or older
 managed registrations through the normal reviewed setup transaction.
 
-With Bun, `bunx rea-agents setup` (or `bunx rea-agents@latest setup`) is the
+With Bun, `bunx rea-agents-layouter787 setup` (or `bunx rea-agents-layouter787-layouter787@latest setup`) is the
 equivalent entry point. Setup run through `npx` registers
-`npx -y rea-agents@<version> mcp`; setup run through `bunx` or `bun x` registers
-`bunx rea-agents@<version> mcp`. On Windows, setup wraps either command in
+`npx -y rea-agents-layouter787@<version> mcp`; setup run through `bunx` or `bun x` registers
+`bunx rea-agents-layouter787@<version> mcp`. On Windows, setup wraps either command in
 `cmd.exe /d /c` so clients can start the runner's command shim. Neither
 registration points into the runner's temporary package cache.
 
@@ -1520,17 +1520,17 @@ the matching bundled Windows native artifact; an artifact without the control
 refuses to start the helper rather than running it unlimited. CI tests Node.js
 only.
 
-Running `npm install rea-agents` without `--global` installs the executable only
+Running `npm install rea-agents-layouter787` without `--global` installs the executable only
 in the current project's `node_modules/.bin`; it does not make `rea` available
 on the shell `PATH`. Use the setup command above for the guided setup
-journey, `npx -y rea-agents@latest` for unattended one-off commands, or install globally
-with `npm install --global rea-agents` for a shell-visible `rea` command.
+journey, `npx -y rea-agents-layouter787-layouter787@latest` for unattended one-off commands, or install globally
+with `npm install --global rea-agents-layouter787` for a shell-visible `rea` command.
 
 For many concurrent agent sessions, run setup directly from a global installation
 to avoid keeping a separate npm launcher process for each MCP connection:
 
 ```bash
-npm install --global rea-agents
+npm install --global rea-agents-layouter787
 rea setup
 ```
 
@@ -1581,7 +1581,7 @@ version, download its tagged script, and inspect the downloaded file:
 
 ```bash
 rea_version=6.7.0
-curl -fsSL "https://raw.githubusercontent.com/morluto/rea/rea-agents-${rea_version}/install.sh" -o rea-install.sh
+curl -fsSL "https://raw.githubusercontent.com/morluto/rea/rea-agents-layouter787-${rea_version}/install.sh" -o rea-install.sh
 less rea-install.sh
 ```
 
