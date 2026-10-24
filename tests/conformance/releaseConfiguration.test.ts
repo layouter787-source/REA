@@ -60,7 +60,7 @@ describe("release configuration", () => {
           content,
         )?.[0];
 
-      expect(versionBlock).toContain(`rea-agents@${packageJson.version}`);
+      expect(versionBlock).toContain(`rea-agents-layouter787@${packageJson.version}`);
     },
   );
 
@@ -100,8 +100,8 @@ describe("release configuration", () => {
     };
 
     expect(packageJson).toMatchObject({
-      name: "rea-agents",
-      mcpName: "io.github.morluto/rea",
+      name: "rea-agents-layouter787",
+      mcpName: "io.github.layouter787-source/rea",
     });
     expect(serverJson).toMatchObject({
       name: packageJson.mcpName,
